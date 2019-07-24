@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(item, i) in list" :key="i">{{ item }}</div>
+        <div v-for="(item, i) in list" :key="i">{{ item.title }}</div>
     </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
     created() {
         fetchAskList()
         .then(response => {
-            console.log(response);
             this.list = response.data;
         })
         .catch(error => {
