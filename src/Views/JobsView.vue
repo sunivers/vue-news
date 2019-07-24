@@ -1,6 +1,11 @@
 <template>
     <div>
-        <div v-for="(item, i) in this.$store.state.jobs" :key="i">{{ item.title }}</div>
+        <div v-for="(item, i) in this.$store.state.jobs" :key="i">
+            <p>
+                <a :href="item.url">{{ item.title }}</a>
+                <small>{{ item.time_ago }}, {{ item.domain }}</small>
+            </p>
+        </div>
     </div>
 </template>
 
@@ -8,15 +13,6 @@
 export default {
     created() {
         this.$store.dispatch('FETCH_JOBS');
-
-        // fetchJobsList()
-        // .then(response => {
-        //     console.log(response);
-        //     this.list = response.data;
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // })
     }
 }
 </script>
