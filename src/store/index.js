@@ -22,11 +22,12 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        FETCH_NEWS(context) {
+        //context.commit을 destructuring(구조 분해 할당)하여 commit값만 가져온다.
+        FETCH_NEWS({ commit }) {
             fetchNewsList()
-            .then(response => {
-                console.log(response.data);
-                context.commit('SET_NEWS', response.data);
+            //위와 마찬가지로 response.data를 구조 분해 할당하여 data값만 가져온다.
+            .then(({ data }) => {
+                commit('SET_NEWS', data);
             })
             .catch(error => {
                 console.log(error);
