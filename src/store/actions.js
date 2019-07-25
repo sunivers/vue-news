@@ -1,4 +1,4 @@
-import { fetchNewsList, fetchJobsList, fetchAskList } from '../api/index.js';
+import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserData } from '../api/index.js';
 
 export default {
     //context.commit을 destructuring(구조 분해 할당)하여 commit값만 가져온다.
@@ -21,5 +21,10 @@ export default {
         fetchAskList()
         .then(response => context.commit('SET_ASK', response.data))
         .catch(error => console.log(error))
+    },
+    FETCH_USER({commit}, username) {
+        fetchUserData(username)
+        .then(({data}) => commit('SET_USER', data))
+        .catch(error => console.log(error));
     }
 }
