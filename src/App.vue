@@ -21,6 +21,15 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  background-color: #f6f9fc;
+}
+a {
+  color: #525252;
+  text-decoration: none;
+}
+a:hover {
+  color: #42b883;
+  text-decoration: underline;
 }
 
 /* Router Transition */
