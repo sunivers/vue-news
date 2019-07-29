@@ -1,8 +1,12 @@
 <template>
     <div>
         <section>
-            <!-- 질문 상세 정보 -->
-            <div class="user-container">
+            <!-- 질문자 상세 정보 -->
+            <user-profile :info="fetchedItem">
+                <div slot="username">{{ fetchedItem.user }}</div>
+                <template slot="time">{{ fetchedItem.time_ago }}</template>
+            </user-profile>
+            <!-- <div class="user-container">
                 <div>
                     <i class="fas fa-user"></i>
                 </div>
@@ -10,7 +14,7 @@
                     <router-link :to="`/user/${fetchedItem.user}`" class="name">{{ fetchedItem.user }}</router-link>
                     <div class="time">{{ fetchedItem.time_ago }}</div>
                 </div>
-            </div>
+            </div> -->
             <h2>{{ fetchedItem.title }}</h2>
             <div v-html="fetchedItem.content"></div>
         </section>
@@ -22,6 +26,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '../components/UserProfile.vue';
 
 export default {
     computed: {
@@ -31,25 +36,12 @@ export default {
         const itemId = this.$route.params.id;
         this.$store.dispatch('FETCH_ITEM', itemId);
     },
+    components: {
+        UserProfile,
+    }
 }
 </script>
 
-<style scoped>
-.user-container {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-.fa-user {
-    font-size: 2.5rem;
-}
-.user-description {
-    padding-left: 8px;
-}
-.name {
-    font-size: 1.2rem;
-}
-.time {
-    font-size: 0.85rem;
-}
+<style>
+
 </style>
