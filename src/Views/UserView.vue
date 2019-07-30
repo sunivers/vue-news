@@ -1,8 +1,8 @@
 <template>
     <user-profile :info="userInfo">
         <div slot="username">{{ userInfo.id }}</div>
-        <template slot="time">{{ userInfo.created }}</template>
-        <div slot="karma">{{ userInfo.karma }}</div>
+        <template slot="time">{{ 'Joined ' + userInfo.created }}, </template>
+        <span slot="karma">{{ userInfo.karma }}</span>
     </user-profile>
 </template>
 
