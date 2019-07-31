@@ -5,8 +5,9 @@ export default {
     FETCH_NEWS({ commit }) {
         fetchNewsList()
         //위와 마찬가지로 response.data를 구조 분해 할당하여 data값만 가져온다.
-        .then(({ data }) => {
-            commit('SET_NEWS', data);
+        .then(response => {
+            commit('SET_NEWS', response.data);
+            return response;
         })
         .catch(error => {
             console.log(error);
@@ -14,7 +15,10 @@ export default {
     },
     FETCH_JOBS(context) {
         fetchJobsList()
-        .then(response => context.commit('SET_JOBS', response.data))
+        .then(response => {
+            context.commit('SET_JOBS', response.data);
+            return response;
+        })
         .catch(error => console.log(error))
     },
     FETCH_ASK(context) {
