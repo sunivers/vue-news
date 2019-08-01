@@ -1,4 +1,4 @@
-import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserData, fetchItemData } from '../api/index.js';
+import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserData, fetchItemData, fetchList } from '../api/index.js';
 
 export default {
     //context.commit을 destructuring(구조 분해 할당)하여 commit값만 가져온다.
@@ -34,6 +34,11 @@ export default {
     FETCH_ITEM({commit}, id) {
         fetchItemData(id)
         .then(response => commit('SET_ITEM', response.data))
+        .catch(error => console.log(error));
+    },
+    FETCH_LIST({commit}, pageName) {
+        fetchList(pageName)
+        .then(({data}) => commit('SET_LIST', data))
         .catch(error => console.log(error));
     }
 }
