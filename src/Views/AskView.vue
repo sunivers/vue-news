@@ -11,12 +11,6 @@ import ListItem from '../components/ListItem.vue';
 export default {
     components: {
         ListItem,
-    },
-    created() {
-        console.log('created');
-    },
-    mounted() {
-        console.log('mounted');
     }
     // mixins: [ListMixin],
 }

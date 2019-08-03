@@ -35,13 +35,28 @@ export default {
         .then(response => commit('SET_ITEM', response.data))
         .catch(error => console.log(error));
     },
-    FETCH_LIST({commit}, pageName) {
-        // Promise 객체를 반드시 반환해주어야 이어서 동작하는 코드를 순서에 맞게 동기적으로 작동시킬 수 있다.
-        return fetchList(pageName)
-        .then(response => {
+
+    // promise
+    // FETCH_LIST({commit}, pageName) {
+    //     // Promise 객체를 반드시 반환해주어야 이어서 동작하는 코드를 순서에 맞게 동기적으로 작동시킬 수 있다.
+    //     return fetchList(pageName)
+    //     .then(response => {
+    //         commit('SET_LIST', response.data);
+    //         return response;
+    //     })
+    //     .catch(error => console.log(error));
+    // },
+
+    //async
+    async FETCH_LIST({commit}, pageName) {
+        try {
+            console.log('async 1');
+            const response = await fetchList(pageName);
+            console.log('async 2');
             commit('SET_LIST', response.data);
-            return response;
-        })
-        .catch(error => console.log(error));
+            return response;   
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

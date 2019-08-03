@@ -40,7 +40,6 @@ export const router = new VueRouter({
                 bus.$emit('start:spinner');
                 store.dispatch('FETCH_LIST', to.name)
                 .then(() => {
-                    console.log('beforeEnter');
                     bus.$emit('end:spinner');
                     next();
                 })
