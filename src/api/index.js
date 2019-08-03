@@ -16,16 +16,31 @@ function fetchJobsList() {
     return axios.get(`${config.baseURL}jobs/1.json`);
 }
 
-function fetchList(pageName) {
-    return axios.get(`${config.baseURL}${pageName}/1.json`);
+async function fetchList(pageName) {
+    try {
+        const response = await axios.get(`${config.baseURL}${pageName}/1.json`);
+        return response;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-function fetchUserData(username) {
-    return axios.get(`${config.baseURL}user/${username}.json`);
+async function fetchUserData(username) {
+    try {
+        const response = await axios.get(`${config.baseURL}user/${username}.json`);   
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function fetchItemData(id) {
-    return axios.get(`${config.baseURL}item/${id}.json`);
+async function fetchItemData(id) {
+    try {
+        const response = await axios.get(`${config.baseURL}item/${id}.json`);   
+        return response;
+    } catch (error) {
+        console.log(error);  
+    }
 }
 
 

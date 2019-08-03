@@ -2,38 +2,30 @@ import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserData, fetchItemDat
 
 export default {
     //context.commit을 destructuring(구조 분해 할당)하여 commit값만 가져온다.
-    FETCH_NEWS({ commit }) {
-        return fetchNewsList()
-        .then(response => {
-            commit('SET_NEWS', response.data);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-        })
+    async FETCH_NEWS({ commit }) {
+        const response = await fetchNewsList();
+        commit('SET_NEWS', response.data);
+        return response;
     },
-    FETCH_JOBS(context) {
-        return fetchJobsList()
-        .then(response => {
-            context.commit('SET_JOBS', response.data);
-            return response;
-        })
-        .catch(error => console.log(error))
+    async FETCH_JOBS({ commit }) {
+        const response = await fetchJobsList();
+        commit('SET_JOBS', response.data);
+        return response;
     },
-    FETCH_ASK(context) {
-        return fetchAskList()
-        .then(response => context.commit('SET_ASK', response.data))
-        .catch(error => console.log(error))
+    async FETCH_ASK({ commit }) {
+        const response = await fetchAskList();
+        commit('SET_ASK', response.data);
+        return response;
     },
-    FETCH_USER({commit}, username) {
-        return fetchUserData(username)
-        .then(({data}) => commit('SET_USER', data))
-        .catch(error => console.log(error));
+    async FETCH_USER({commit}, username) {
+        const response = await fetchUserData(username);
+        commit('SET_USER', response.data);
+        return response;
     },
-    FETCH_ITEM({commit}, id) {
-        return fetchItemData(id)
-        .then(response => commit('SET_ITEM', response.data))
-        .catch(error => console.log(error));
+    async FETCH_ITEM({commit}, id) {
+        const response = await fetchItemData(id);
+        commit('SET_ITEM', response.data);
+        return response;
     },
 
     // promise
@@ -49,14 +41,8 @@ export default {
 
     //async
     async FETCH_LIST({commit}, pageName) {
-        try {
-            console.log('async 1');
-            const response = await fetchList(pageName);
-            console.log('async 2');
-            commit('SET_LIST', response.data);
-            return response;   
-        } catch (error) {
-            console.log(error);
-        }
+        const response = await fetchList(pageName);
+        commit('SET_LIST', response.data);
+        return response;
     }
 }
