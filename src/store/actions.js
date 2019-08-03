@@ -39,7 +39,6 @@ export default {
         // Promise 객체를 반드시 반환해주어야 이어서 동작하는 코드를 순서에 맞게 동기적으로 작동시킬 수 있다.
         return fetchList(pageName)
         .then(response => {
-            console.log(4);
             commit('SET_LIST', response.data);
             return response;
         })
