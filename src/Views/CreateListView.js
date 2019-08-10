@@ -1,4 +1,4 @@
-import ListView from '../views/ListView.vue';
+import ListView from '../Views/ListView.vue';
 import bus from '../utils/bus.js';
 
 export default function createListView(name) {
