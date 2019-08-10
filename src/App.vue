@@ -34,6 +34,9 @@ export default {
   created() {
     bus.$on('start:spinner', this.startSpinner);
     bus.$on('end:spinner', this.endSpinner);
+    
+    //환경설정 파일 .env에서 VUE_ 프리픽스를 붙이면 애플리케이션에서 바로 사용 가능하다.
+    console.log(process.env.VUE_APP_TITLE);
   },
   // 이벤트 버스는 컴포넌트 종료 전에 꼭 이벤트 해제 해줘야함. 
   // 안그러면 이벤트 객체가 계속 쌓임 (addEventListener 같은 역할)
