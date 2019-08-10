@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import NewsView from '../views/NewsView.vue';
-import AskView from '../views/AskView.vue';
-import JobsView from '../views/JobsView.vue';
-import ItemView from '../views/ItemView.vue';
-import UserView from '../views/UserView.vue';
-import createListView from '../views/CreateListView.js';
+import NewsView from '../Views/NewsView.vue';
+import AskView from '../Views/AskView.vue';
+import JobsView from '../Views/JobsView.vue';
+import ItemView from '../Views/ItemView.vue';
+import UserView from '../Views/UserView.vue';
+import createListView from '../Views/CreateListView.js';
 import bus from '../utils/bus.js';
 import { store } from '../store/index.js';
 
@@ -63,6 +63,13 @@ export const router = new VueRouter({
         {
             path: '/item/:id',
             component: ItemView,
+            beforeEnter: async (to, from, next) => {
+                bus.$emit('start:spinner');
+                const itemId = to.params.id;
+                const response = await store.dispatch('FETCH_ITEM', itemId);
+                bus.$emit('end:spinner');
+                next();
+            }
         },
         {
             path: '/user/:id',
